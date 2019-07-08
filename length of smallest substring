@@ -1,0 +1,27 @@
+total_chars= 256
+def maximum_dist_character(str,length): 
+    count = [0]*total_chars 
+    for i in range(length): 
+        count[ord(str[i])] += 1
+    max_distinct = 0
+    for i in range(total_chars): 
+        if (count[i] != 0): 
+            max_distinct += 1	
+    return max_distinct 
+def smallestSubstr_maxDistictChar(str): 
+    length=len(str)	
+    max_distinct=maximum_dist_character(str,length) 
+    minlength=length	
+    for i in range(length): 
+        for j in range(length): 
+            subs = str[i:j] 
+            subs_lenght = len(subs) 
+            sub_distinct_char = maximum_dist_character(subs,subs_lenght) 
+            if (subs_lenght < minlength and max_distinct==sub_distinct_char): 
+                minlength=subs_lenght 
+    return minlength 
+if __name__ == "__main__": 
+    str=input();
+    l = smallestSubstr_maxDistictChar(str); 
+    print(l)
+
